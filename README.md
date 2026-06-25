@@ -7,3 +7,20 @@
 - To build the attendance application step by step in small chunks and follow MVC principle
 - For now it is only for student who can make there attendance by this application from there account.
 - In this iteration it is terminal based system.
+
+# Step 1
+
+- [X] show simple menu like
+
+```
+    1. Mark Attendance
+    2. Exit
+```
+
+# step 2
+
+- [X] remove the bug of storing duplicate value.
+
+# step 3
+
+- [] use JSON file to store the attendance.
