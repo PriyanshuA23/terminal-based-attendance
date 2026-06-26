@@ -32,6 +32,6 @@
     "date2": ["student1", "student2"]
 }
 ```
-- [] read the data if available otherwise create the file.
-- [] add the data if needed.
-- [] write it back to the file.
+- [X] read the data if available otherwise create the file.
+- [X] add the data if needed.
+- [X] write it back to the file.

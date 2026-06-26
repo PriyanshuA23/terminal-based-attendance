@@ -1,9 +1,13 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"time"
 )
+
+const FILE_PATH = "attendance.json"
 
 func displayHomePage(username string) {
 	fmt.Println("Hello", username)
@@ -24,7 +28,7 @@ func checkIfAttendanceMarked(username string, records map[string][]string, date 
 func runAttendanceApplication(username string, records map[string][]string) {
 	dateToday := time.Now().Format("2006-01-02")
 	var isAttendanceMarked bool = checkIfAttendanceMarked(username, records, dateToday)
-	
+
 	for {
 		displayHomePage(username)
 
@@ -40,13 +44,18 @@ func runAttendanceApplication(username string, records map[string][]string) {
 		}
 		records[dateToday] = append(records[dateToday], username)
 		isAttendanceMarked = true
+		updatedRecord, _ := json.MarshalIndent(records, "", " ")
+		os.WriteFile(FILE_PATH, updatedRecord, 0644)
 		fmt.Println("Attendance is marked ✅")
 		fmt.Println(records)
 	}
 }
 
 func main() {
-	attendanceRecords := map[string][]string {}
+	attendanceRecords := make(map[string][]string)
+	data, _ := os.ReadFile(FILE_PATH)
+	json.Unmarshal(data, &attendanceRecords)
+
 	for {
 		fmt.Print("\033[H\033[2J")
 		var username string
