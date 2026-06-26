@@ -24,3 +24,14 @@
 # step 3
 
 - [] use JSON file to store the attendance.
+
+- structure 
+```json
+{
+    "date1": ["student1", "student2"],
+    "date2": ["student1", "student2"]
+}
+```
+- [] read the data if available otherwise create the file.
+- [] add the data if needed.
+- [] write it back to the file.
