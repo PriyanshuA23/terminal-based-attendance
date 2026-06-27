@@ -23,7 +23,7 @@
 
 # step 3
 
-- [] use JSON file to store the attendance.
+- [X] use JSON file to store the attendance.
 
 - structure 
 ```json
@@ -35,3 +35,10 @@
 - [X] read the data if available otherwise create the file.
 - [X] add the data if needed.
 - [X] write it back to the file.
+
+# step 4
+
+- refactoring of code.
+    * simplify the for loop for checking with inbuilt method of slices.
+    * separation of concern in marking and saving of attendance.
+    * create a type of attendance record.
