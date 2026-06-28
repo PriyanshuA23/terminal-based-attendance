@@ -37,25 +37,24 @@ func saveAttendance(records AttendanceRecords) {
 func runAttendanceApplication(username string, records AttendanceRecords) {
 	dateToday := time.Now().Format("2006-01-02")
 	var isAttendanceMarked bool = checkIfAttendanceMarked(username, records, dateToday)
+	var userSelection string
 
 	for {
 		displayHomePage(username)
-
-		var userSelection string
 		fmt.Scan(&userSelection)
-
-		if isAttendanceMarked {
-			fmt.Println("Attendance already marked 😡")
-			continue
-		}
 
 		switch userSelection {
 		case "1":
+			if isAttendanceMarked {
+				fmt.Println("Attendance already marked 😡")
+				continue
+			}
 			markAttendance(username, records, dateToday)
 			saveAttendance(records)
 			isAttendanceMarked = true
 
 		case "2":
+			fmt.Println("Inside case 2")
 			return
 
 		default:
@@ -69,7 +68,7 @@ func readUsername() string {
 	var username string
 	fmt.Print("Enter username: ")
 	fmt.Scan(&username)
-	return username;
+	return username
 }
 
 func main() {
