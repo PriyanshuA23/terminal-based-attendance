@@ -1,10 +1,10 @@
 package main
 
 import (
-	"slices"
 	"encoding/json"
 	"fmt"
 	"os"
+	"slices"
 	"time"
 )
 
@@ -43,18 +43,33 @@ func runAttendanceApplication(username string, records AttendanceRecords) {
 
 		var userSelection string
 		fmt.Scan(&userSelection)
-		if userSelection == "2" {
-			break
-		}
 
 		if isAttendanceMarked {
 			fmt.Println("Attendance already marked 😡")
 			continue
 		}
-		markAttendance(username, records, dateToday)
-		isAttendanceMarked = true
-		saveAttendance(records)
+
+		switch userSelection {
+		case "1":
+			markAttendance(username, records, dateToday)
+			saveAttendance(records)
+			isAttendanceMarked = true
+
+		case "2":
+			return
+
+		default:
+			fmt.Println("Invalid option!")
+		}
 	}
+}
+
+func readUsername() string {
+	fmt.Print("\033[H\033[2J")
+	var username string
+	fmt.Print("Enter username: ")
+	fmt.Scan(&username)
+	return username;
 }
 
 func main() {
@@ -63,10 +78,7 @@ func main() {
 	json.Unmarshal(data, &attendanceRecords)
 
 	for {
-		fmt.Print("\033[H\033[2J")
-		var username string
-		fmt.Print("Enter username: ")
-		fmt.Scan(&username)
+		username := readUsername()
 		runAttendanceApplication(username, attendanceRecords)
 	}
 }
